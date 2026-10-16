@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: enterprise-genai-rag-engine
+
+  ai:
+    openai:
+      api-key: ${SPRING_AI_OPENAI_API_KEY:demo-key}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.3
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aidb
+    username: postgres
+    password: postgrespassword
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
